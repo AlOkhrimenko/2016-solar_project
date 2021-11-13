@@ -4,6 +4,14 @@
 from solar_objects import Star, Planet
 
 
+colors = {'red' : 0xff0000,
+          'orange' : 0xee6611,
+          'blue' : 0x0000ff,
+          'green' : 0x15e52e,
+          'yellow' : 0xdddd0a,
+          'white' : 0x000000,
+          'gray' : 0xaaaaaa}
+
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
     и вызывает создание их графических образов
@@ -23,6 +31,10 @@ def read_space_objects_data_from_file(input_filename):
                 star = Star()
                 parse_star_parameters(line, star)
                 objects.append(star)
+            elif object_type == "planet":
+                planet = Planet()
+                parse_planet_parameters(line, planet)
+                objects.append(planet)
             else:
                 print("Unknown space object")
 
@@ -44,7 +56,15 @@ def parse_star_parameters(line, star):
     **star** — объект звезды.
     """
 
-    pass  # FIXME: not done yet
+    parsed = line.split()
+    star.R = parsed[1]
+    star.color = colors[parsed[2]]
+    star.m = parsed[3]
+    star.x = parsed[4]
+    star.y = parsed[5]
+    star.Vx = parsed[6]
+    star.Vy = parsed[7]
+
 
 def parse_planet_parameters(line, planet):
     """Считывает данные о планете из строки.
@@ -61,8 +81,15 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    pass  # FIXME: not done yet...
-#test
+    parsed = line.split()
+    planet.R = parsed[1]
+    planet.color = colors[parsed[2]]
+    planet.m = parsed[3]
+    planet.x = parsed[4]
+    planet.y = parsed[5]
+    planet.Vx = parsed[6]
+    planet.Vy = parsed[7]
+
 
 def write_space_objects_data_to_file(output_filename, space_objects):
     """Сохраняет данные о космических объектах в файл.
@@ -77,8 +104,8 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     """
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
-            print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            # FIXME: should store real values
+            print(out_file, "%s %d %s %f %f %f %f %f" %
+                  (obj.__name__, obj.R, list(colors.keys)[list(colors.values).index(obj.color)], obj.m, obj.x, obj.y, obj.Vx, obj.Vy))
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
 
