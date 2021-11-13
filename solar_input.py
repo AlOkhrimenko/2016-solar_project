@@ -62,7 +62,7 @@ def parse_planet_parameters(line, planet):
     **planet** — объект планеты.
     """
     pass  # FIXME: not done yet...
-
+#test
 
 def write_space_objects_data_to_file(output_filename, space_objects):
     """Сохраняет данные о космических объектах в файл.
