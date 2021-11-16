@@ -4,13 +4,13 @@
 from solar_objects import Star, Planet
 
 
-colors = {'red' : 0xff0000,
-          'orange' : 0xee6611,
-          'blue' : 0x0000ff,
-          'green' : 0x15e52e,
-          'yellow' : 0xdddd0a,
-          'white' : 0x000000,
-          'gray' : 0xaaaaaa}
+colors = {'red' : '#ff0000',
+          'orange' : '#ee6611',
+          'blue' : '#0000ff',
+          'green' : '#15e52e',
+          'yellow' : '#dddd0a',
+          'white' : '#ffffff',
+          'gray' : '#aaaaaa'}
 
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
@@ -124,6 +124,7 @@ def log_space_objects(log_filename, space_objects):
     with open(log_filename, 'a') as log_file:
         for obj in space_objects:
             print("%f: %f %f %f %f" % (obj.m, obj.x, obj.y, obj.Vx, obj.Vy), file=log_file, end=' ')
+        print(file=log_file)
 
 if __name__ == "__main__":
     print("This module is not for direct call!")

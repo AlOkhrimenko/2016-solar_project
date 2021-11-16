@@ -40,6 +40,8 @@ def execution():
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
 
+    log_space_objects('log.txt', space_objects)
+
     if perform_execution:
         space.after(101 - int(time_speed.get()), execution)
 
