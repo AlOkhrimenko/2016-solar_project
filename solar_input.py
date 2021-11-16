@@ -104,10 +104,26 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     """
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
-            print(out_file, "%s %d %s %f %f %f %f %f" %
-                  (obj.__name__, obj.R, list(colors.keys)[list(colors.values).index(obj.color)], obj.m, obj.x, obj.y, obj.Vx, obj.Vy))
+            print("%s %d %s %f %f %f %f %f" %
+                  (obj.__name__, obj.R, list(colors.keys)[list(colors.values).index(obj.color)], obj.m, obj.x, obj.y, obj.Vx, obj.Vy),
+                  file=out_file)
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
+
+def log_space_objects(log_filename, space_objects):
+    """Сохраняет данные о космических объектах в данный момент.
+    Данные дописываются в конец файла одной строкой.
+    Идентификация ообъектов по массе, после которой подряд идут координаты и скорость
+    в формате <mass1>: <x1> <y1> <Vx1> <Vy1> <mass2>: <x2> <y2> <Vx2> <Vy2> ...
+
+    :param log_filename: имя лог-файла
+    :type log_filename: basestring
+    :param space_objects: список объектов симуляции
+    :type space_objects: list
+    """
+    with open(log_filename, 'a') as log_file:
+        for obj in space_objects:
+            print("%f: %f %f %f %f" % (obj.m, obj.x, obj.y, obj.Vx, obj.Vy), file=log_file, end=' ')
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
