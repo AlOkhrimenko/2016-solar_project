@@ -10,7 +10,8 @@ colors = {'red' : '#ff0000',
           'green' : '#15e52e',
           'yellow' : '#dddd0a',
           'white' : '#ffffff',
-          'gray' : '#aaaaaa'}
+          'gray' : '#aaaaaa',
+          'cyan' : '#00ffff'}
 
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
